@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:aisha/default.dart';
 import 'package:aisha/firebase_options.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -22,19 +21,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'AISHA.ai',
       theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        primaryColor: Colors.lightBlue,
-        primarySwatch: Colors.lightBlue
-      ),
+          useMaterial3: true,
+          brightness: Brightness.light,
+          primaryColor: Colors.lightBlue,
+          primarySwatch: Colors.lightBlue),
       home: LandingPage(),
-      initialRoute: HomeScreen.id,
-      routes: {
-        HomeScreen.id: (context) => HomeScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        SignUpScreen.id: (context) => SignUpScreen(),
-        WelcomeScreen.id: (context) => WelcomeScreen(),
-      },
+      // initialRoute: HomeScreen.id,
+      // routes: {
+      //   HomeScreen.id: (context) => HomeScreen(),
+      //   LoginScreen.id: (context) => LoginScreen(),
+      //   SignUpScreen.id: (context) => SignUpScreen(),
+      //   WelcomeScreen.id: (context) => WelcomeScreen(),
+      // },
     );
   }
 }
@@ -47,11 +45,22 @@ class LandingPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              'assets/logo.png', //Replace with your logo
-              height: 300,
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset(
+                'assets/logo.png', //Replace with your logo
+                height: 300,
+              ),
+              SizedBox(
+                width: 100,
+              ),
+              Image.asset(
+                'assets/logo.png', //Replace with your logo
+                height: 300,
+              ),
+            ]),
+            SizedBox(
+              height: 20,
             ),
-            SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -59,10 +68,16 @@ class LandingPage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               },
-              child: RichText(text: TextSpan(style: TextStyle(fontSize: 50, color: Colors.white), children: [
-                TextSpan(text: "Meet "),
-                TextSpan(text: "AISHA.ai", style: aishaTextStyle(color: Colors.black, fontWeight: FontWeight.w700))
-              ])),
+              child: RichText(
+                  text: TextSpan(
+                      style: TextStyle(fontSize: 50, color: Colors.white),
+                      children: [
+                    TextSpan(text: "Meet "),
+                    TextSpan(
+                        text: "AISHA.ai",
+                        style: aishaTextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w700))
+                  ])),
               style: ElevatedButton.styleFrom(
                 textStyle: TextStyle(fontSize: 50),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
