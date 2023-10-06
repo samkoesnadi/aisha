@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/components/components.dart';
-import 'package:login_app/screens/login_screen.dart';
-import 'package:login_app/screens/signup_screen.dart';
+import 'package:aisha/components/components.dart';
+import 'package:aisha/screens/login_screen.dart';
+import 'package:aisha/screens/signup_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

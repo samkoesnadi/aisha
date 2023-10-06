@@ -1,14 +1,19 @@
 import 'package:aisha/pages/login.dart';
+import 'package:aisha/screens/home_screen.dart';
+import 'package:aisha/screens/login_screen.dart';
+import 'package:aisha/screens/signup_screen.dart';
+import 'package:aisha/screens/welcome.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:aisha/default.dart';
-import 'package:aisha/utils.dart';
+import 'package:aisha/firebase_options.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +36,6 @@ class MyApp extends StatelessWidget {
         WelcomeScreen.id: (context) => WelcomeScreen(),
       },
     );
-    );   
   }
 }
 

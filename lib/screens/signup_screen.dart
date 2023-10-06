@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:login_app/components/components.dart';
-import 'package:login_app/screens/home_screen.dart';
-import 'package:login_app/screens/login_screen.dart';
+import 'package:aisha/components/components.dart';
+import 'package:aisha/screens/home_screen.dart';
+import 'package:aisha/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login_app/constants.dart';
+import 'package:aisha/default.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 class SignUpScreen extends StatefulWidget {

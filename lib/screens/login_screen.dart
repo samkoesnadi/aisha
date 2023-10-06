@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/components/components.dart';
-import 'package:login_app/constants.dart';
-import 'package:login_app/screens/welcome.dart';
+import 'package:aisha/components/components.dart';
+import 'package:aisha/default.dart';
+import 'package:aisha/screens/welcome.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:login_app/screens/home_screen.dart';
+import 'package:aisha/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
