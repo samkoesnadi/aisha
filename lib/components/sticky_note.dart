@@ -2,14 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
- 
 class StickyNote extends StatelessWidget {
-  const StickyNote({
-    super.key, 
-    this.child,
-    this.size = 200,
-    this.color = const Color(0xffffff00)
-  });
+  const StickyNote(
+      {super.key,
+      this.child,
+      this.size = 200,
+      this.color = const Color(0xffffff00)});
 
   final Widget? child;
   final Color color;
@@ -18,30 +16,26 @@ class StickyNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: size,
-      height: size,
-      child: Container(
-        color: Colors.white,
-        child: Transform.rotate(
-          angle: 0.01 * pi,
-          child: CustomPaint(
-              painter: StickyNotePainter(
-                  color: color
-              ),
-              child: Center(
-                  child: child
-              )
-          ),
-        )
-      )
-    );
+        width: size,
+        height: size,
+        child: Container(
+            color: Colors.white,
+            child: Stack(
+              children: [
+                CustomPaint(
+                    painter: StickyNotePainter(color: color),
+                    child: const SizedBox.expand()),
+                Container(
+                    margin: EdgeInsets.only(
+                        top: 20, left: 20, right: 20, bottom: 30),
+                    child: child)
+              ],
+            )));
   }
 }
 
 class StickyNotePainter extends CustomPainter {
-  StickyNotePainter({
-    required this.color
-  });
+  StickyNotePainter({required this.color});
 
   Color color;
 
@@ -59,14 +53,12 @@ class StickyNotePainter extends CustomPainter {
     path.lineTo(size.width, size.height);
 
     double foldAmount = 0.12;
-    path.lineTo(size.width * 3/4, size.height);
+    path.lineTo(size.width * 3 / 4, size.height);
 
+    path.quadraticBezierTo(size.width * foldAmount * 2, size.height,
+        size.width * foldAmount, size.height - (size.height * foldAmount));
     path.quadraticBezierTo(
-      size.width * foldAmount * 2, size.height, size.width * foldAmount, size.height - (size.height * foldAmount)
-    );
-    path.quadraticBezierTo(
-      0, size.height - (size.height * foldAmount * 1.5), 0, size.height / 4
-    );
+        0, size.height - (size.height * foldAmount * 1.5), 0, size.height / 4);
     path.lineTo(0, 0);
 
     canvas.drawPath(path, gradientPaint);
@@ -77,11 +69,10 @@ class StickyNotePainter extends CustomPainter {
 
     Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
     RadialGradient gradient = RadialGradient(
-      colors: [brighten(color), color],
-      radius: 1.0,
-      stops: const [0.5, 1.0],
-      center: Alignment.bottomLeft
-    );
+        colors: [brighten(color), color],
+        radius: 1.0,
+        stops: const [0.5, 1.0],
+        center: Alignment.bottomLeft);
     paint.shader = gradient.createShader(rect);
     return paint;
   }
@@ -97,7 +88,6 @@ class StickyNotePainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return oldDelegate != this;
   }
-
 }
 
 Color brighten(Color c, [int percent = 30]) {
@@ -106,6 +96,5 @@ Color brighten(Color c, [int percent = 30]) {
       c.alpha,
       c.red + ((255 - c.red) * p).round(),
       c.green + ((255 - c.green) * p).round(),
-      c.blue + ((255 - c.blue) * p).round()
-  );
+      c.blue + ((255 - c.blue) * p).round());
 }

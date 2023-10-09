@@ -1,7 +1,6 @@
 import 'package:aisha/components/sticky_note.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -9,9 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyStickyNotePage()
-    );
+    return MaterialApp(home: MyStickyNotePage());
   }
 }
 
@@ -25,27 +22,32 @@ class _MyStickyNotePageState extends State<MyStickyNotePage> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (TapDownDetails details) {
-        setState(() {
-          tapPosition = details.globalPosition;
-        });
-      },
-      child: Container(
-        color: Colors.white,
-        width: double.infinity,  // Full width
-        height: double.infinity, // Full height
-        child: Stack(
-          children: [
-            if (tapPosition != null)
-              Positioned(
-                left: tapPosition!.dx,
-                top: tapPosition!.dy,
-                child: StickyNote()
-              )
-          ],
-        )
-      )
-    );
+    return Scaffold(
+        body: GestureDetector(
+            onTapDown: (TapDownDetails details) {
+              setState(() {
+                tapPosition = details.globalPosition;
+              });
+            },
+            child: Container(
+                color: Colors.white,
+                width: double.infinity, // Full width
+                height: double.infinity, // Full height
+                child: Stack(
+                  children: [
+                    if (tapPosition != null)
+                      Positioned(
+                          left: tapPosition!.dx,
+                          top: tapPosition!.dy,
+                          child: StickyNote(
+                              child: TextField(
+                            maxLines: null,
+                            expands: true,
+                            decoration: InputDecoration.collapsed(
+                              hintText: 'Type an idea',
+                            ),
+                          )))
+                  ],
+                ))));
   }
 }
