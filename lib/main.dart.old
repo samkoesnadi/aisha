@@ -1,0 +1,161 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/material.dart';
+
+import 'package:aisha/default.dart';
+import 'package:aisha/firebase_options.dart';
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  FirebaseUIAuth.configureProviders([
+    EmailAuthProvider()
+  ]);
+
+  runApp(MyApp());
+}
+
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final providers = [EmailAuthProvider()];
+
+    return MaterialApp(
+      title: 'AISHA.ai',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.lightBlue,
+        primarySwatch: Colors.lightBlue,
+        // inputDecorationTheme: InputDecorationTheme(
+        //   border: OutlineInputBorder(
+        //     borderRadius: BorderRadius.circular(8),
+        //   ),
+        // ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+            padding: MaterialStateProperty.all<EdgeInsets>(
+              const EdgeInsets.all(24),
+            ),
+          
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          ),
+        ),
+      ),
+      initialRoute: FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/profile',
+      routes: {
+        '/sign-in': (context) {
+          return SignInScreen(
+            providers: providers,
+            actions: [
+              AuthStateChangeAction<SignedIn>((context, state) {
+                if (!state.user!.emailVerified) {
+                  Navigator.pushNamed(context, '/verify-email');
+                } else {
+                  Navigator.pushReplacementNamed(context, '/profile');
+                }              }),
+            ],
+          );
+        },
+        '/profile': (context) {
+          return ProfileScreen(
+            providers: providers,
+            actions: [
+              SignedOutAction((context) {
+                Navigator.pushReplacementNamed(context, '/sign-in');
+              }),
+            ],
+          );
+        },
+        '/verify-email': (context) => EmailVerificationScreen(
+          // actionCodeSettings: ActionCodeSettings(url: '/profile'),
+          actions: [
+            EmailVerifiedAction(() {
+              Navigator.pushReplacementNamed(context, '/profile');
+            }),
+            AuthCancelledAction((context) {
+              FirebaseUIAuth.signOut(context: context);
+              Navigator.pushReplacementNamed(context, '/');
+            }),
+          ],
+        ),
+      },
+    );
+  }
+}
+
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'AISHA.ai',
+//       theme: ThemeData(
+//         useMaterial3: true,
+//         brightness: Brightness.light,
+//         primaryColor: Colors.lightBlue,
+//         primarySwatch: Colors.lightBlue
+//       ),
+//       home: LandingPage(),
+//       initialRoute: HomeScreen.id,
+//       routes: {
+//         HomeScreen.id: (context) => HomeScreen(),
+//         LoginScreen.id: (context) => LoginScreen(),
+//         SignUpScreen.id: (context) => SignUpScreen(),
+//         WelcomeScreen.id: (context) => WelcomeScreen(),
+//       },
+//     );
+//   }
+// }
+
+// class LandingPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Image.asset(
+//               'assets/logo.png', //Replace with your logo
+//               height: 300,
+//             ),
+//             SizedBox(height: 20,),
+//             ElevatedButton(
+//               onPressed: () {
+//                 Navigator.push(
+//                   context,
+//                   MaterialPageRoute(builder: (context) => LoginPage()),
+//                 );
+//               },
+//               child: RichText(text: TextSpan(style: TextStyle(fontSize: 50, color: Colors.white), children: [
+//                 TextSpan(text: "Meet "),
+//                 TextSpan(text: "AISHA.ai", style: aishaTextStyle(color: Colors.black, fontWeight: FontWeight.w700))
+//               ])),
+//               style: ElevatedButton.styleFrom(
+//                 textStyle: TextStyle(fontSize: 50),
+//                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+//                 backgroundColor: Colors.blue,
+//                 foregroundColor: Colors.white,
+//               ),
+//             ),
+//             SizedBox(height: 10),
+//             Text(
+//               'Absolutely Free - Nothing to Lose!',
+//               style: TextStyle(fontSize: 18, color: Colors.blueAccent),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

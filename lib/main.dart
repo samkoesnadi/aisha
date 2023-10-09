@@ -1,18 +1,8 @@
-import 'package:aisha/pages/login.dart';
-import 'package:aisha/screens/home_screen.dart';
-import 'package:aisha/screens/login_screen.dart';
-import 'package:aisha/screens/signup_screen.dart';
-import 'package:aisha/screens/welcome.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:aisha/components/sticky_note.dart';
 import 'package:flutter/material.dart';
 
-import 'package:aisha/default.dart';
-import 'package:aisha/firebase_options.dart';
 
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+void main() {
   runApp(MyApp());
 }
 
@@ -20,64 +10,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AISHA.ai',
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        primaryColor: Colors.lightBlue,
-        primarySwatch: Colors.lightBlue
-      ),
-      home: LandingPage(),
-      initialRoute: HomeScreen.id,
-      routes: {
-        HomeScreen.id: (context) => HomeScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        SignUpScreen.id: (context) => SignUpScreen(),
-        WelcomeScreen.id: (context) => WelcomeScreen(),
-      },
+      home: MyStickyNotePage()
     );
   }
 }
 
-class LandingPage extends StatelessWidget {
+class MyStickyNotePage extends StatefulWidget {
+  @override
+  _MyStickyNotePageState createState() => _MyStickyNotePageState();
+}
+
+class _MyStickyNotePageState extends State<MyStickyNotePage> {
+  Offset? tapPosition;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/logo.png', //Replace with your logo
-              height: 300,
-            ),
-            SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              child: RichText(text: TextSpan(style: TextStyle(fontSize: 50, color: Colors.white), children: [
-                TextSpan(text: "Meet "),
-                TextSpan(text: "AISHA.ai", style: aishaTextStyle(color: Colors.black, fontWeight: FontWeight.w700))
-              ])),
-              style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: 50),
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Absolutely Free - Nothing to Lose!',
-              style: TextStyle(fontSize: 18, color: Colors.blueAccent),
-            ),
+    return GestureDetector(
+      onTapDown: (TapDownDetails details) {
+        setState(() {
+          tapPosition = details.globalPosition;
+        });
+      },
+      child: Container(
+        color: Colors.white,
+        width: double.infinity,  // Full width
+        height: double.infinity, // Full height
+        child: Stack(
+          children: [
+            if (tapPosition != null)
+              Positioned(
+                left: tapPosition!.dx,
+                top: tapPosition!.dy,
+                child: StickyNote()
+              )
           ],
-        ),
-      ),
+        )
+      )
     );
   }
 }
