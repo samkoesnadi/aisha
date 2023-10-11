@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               const EdgeInsets.all(24),
             ),
           
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            backgroundColor: MaterialStateProperty.all<Color>(babyBlue),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           ),
         ),
@@ -144,14 +144,14 @@ class MyApp extends StatelessWidget {
 //               style: ElevatedButton.styleFrom(
 //                 textStyle: TextStyle(fontSize: 50),
 //                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-//                 backgroundColor: Colors.blue,
+//                 backgroundColor: babyBlue,
 //                 foregroundColor: Colors.white,
 //               ),
 //             ),
 //             SizedBox(height: 10),
 //             Text(
 //               'Absolutely Free - Nothing to Lose!',
-//               style: TextStyle(fontSize: 18, color: Colors.blueAccent),
+//               style: TextStyle(fontSize: 18, color: babyBlueAccent),
 //             ),
 //           ],
 //         ),

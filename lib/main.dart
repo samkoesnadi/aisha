@@ -35,6 +35,20 @@ class _MyStickyNotePageState extends State<MyStickyNotePage> {
                 height: double.infinity, // Full height
                 child: Stack(
                   children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300], // Gray rectangle
+                        borderRadius: BorderRadius.circular(
+                            8), // Optional: Rounded corners
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Enter the topic of discussion...',
+                        ),
+                      ),
+                    ),
                     if (tapPosition != null)
                       Positioned(
                           left: tapPosition!.dx,

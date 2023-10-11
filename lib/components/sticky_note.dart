@@ -1,13 +1,11 @@
 import 'dart:math';
 
+import 'package:aisha/default.dart';
 import 'package:flutter/material.dart';
 
 class StickyNote extends StatelessWidget {
   const StickyNote(
-      {super.key,
-      this.child,
-      this.size = 200,
-      this.color = const Color(0xffffff00)});
+      {super.key, this.child, this.size = 200, this.color = babyBlue});
 
   final Widget? child;
   final Color color;
