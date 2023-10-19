@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="8"
-     inkscape:cx="187.6875"
-     inkscape:cy="321.8125"
+     inkscape:zoom="5.6568543"
+     inkscape:cx="187.64846"
+     inkscape:cy="318.81677"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -52,6 +52,23 @@
   </sodipodi:namedview>
   <defs
      id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath4">
@@ -70,43 +87,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:1;stroke:#89cff0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
-       d="m 49.956643,95.072876 c 0,0 2.480435,-20.078635 9.954797,-20.092249 7.419855,-0.01351 3.14415,22.854 9.954797,19.909594 5.61055,-2.425576 3.847789,-18.383975 3.847789,-18.383975"
+       style="fill:none;stroke:#89cff0;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 42.936848,89.942877 c 0,0 1.731947,-19.939664 7.062599,-19.971715 7.050775,-0.04239 1.330851,20.010915 6.969051,19.971715 4.282873,-0.02978 6.901415,-6.342778 4.72399,-8.559307 -2.303806,-2.34518 -20.860386,-1.449943 -20.860386,-1.449943"
        id="path1"
-       sodipodi:nodetypes="cssc"
+       sodipodi:nodetypes="csssc"
        inkscape:export-filename="aisha_splash.png"
-       inkscape:export-xdpi="999.59656"
-       inkscape:export-ydpi="999.59656" />
-    <rect
-       style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:1;stroke:#89cff0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect4"
-       width="12.077374"
-       height="0.080314681"
-       x="52.683765"
-       y="86.38311" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.39834px;font-family:'Rodscript Two';-inkscape-font-specification:'Rodscript Two';font-variation-settings:normal;text-align:center;text-anchor:middle;opacity:1;fill:#89cff0;fill-opacity:1;stroke:#89cff0;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="60.948338"
-       y="78.121475"
-       id="text4"
-       transform="scale(0.9697263,1.0312188)"><tspan
-         sodipodi:role="line"
-         id="tspan4"
-         style="fill:#89cff0;fill-opacity:1;stroke-width:0.9;stroke-dasharray:none"
-         x="60.948338"
-         y="78.121475">AI</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.62619px;font-family:'Rodscript Two';-inkscape-font-specification:'Rodscript Two';font-variation-settings:normal;text-align:center;text-anchor:middle;opacity:1;fill:#89cff0;fill-opacity:1;stroke:#89cff0;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="58.93018"
-       y="86.106567"
-       id="text5"
-       transform="scale(1.0059134,0.99412136)"><tspan
-         sodipodi:role="line"
-         id="tspan5"
-         style="stroke-width:0.9;stroke-dasharray:none"
-         x="58.93018"
-         y="86.106567">SHA</tspan></text>
+       inkscape:export-xdpi="1077.3029"
+       inkscape:export-ydpi="1077.3029" />
   </g>
 </svg>
